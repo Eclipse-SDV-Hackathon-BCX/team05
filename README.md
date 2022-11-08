@@ -5,10 +5,12 @@ Challenge see https://github.com/Eclipse-SDV-Hackathon-BCX/hackchallenge-hack-th
 ## Goal: provide insights into parking situations for trucks along highways
 
 ```mermaid
-ggraph LR
-    A[Car/Simulator] -->|eCal| B(Converter/Bridge)
+graph LR
+    E[Playback] -->|eCal| B
+    A[Simulator] -->|eCal| B(Converter/Bridge)
     B --> |MQTT|C{Middleware}
     C -->|REST| D[UI]
+    C -->|Websocket| D[UI]
     C -->|business logic| C
 ```
 
