@@ -3,7 +3,8 @@ syntax = "proto2";
 package wcx;
 
 message Status {
-  required int32 acceleration = 1;
-  required int32 longitude = 2;
-  required int32 latitude = 3;
+  required string uuid = 1;
+  required int32 acceleration = 2;
+  required float longitude = 3;
+  required float latitude = 4;
 }
