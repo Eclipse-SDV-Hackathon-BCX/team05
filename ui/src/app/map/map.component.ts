@@ -27,6 +27,16 @@ export class MapComponent implements AfterViewInit {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
 
+    var timeMarker = L.icon({
+      iconUrl: 'assets/time_black.svg',
+  
+      iconSize:     [80, 90], // size of the icon
+      iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+      popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    })
+
+    L.marker([52.708480, 13.0232002], {icon: timeMarker}).addTo(this.map);
+
     L.marker([52.6651948, 13.0032002]).addTo(this.map)
       .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
       .openPopup();

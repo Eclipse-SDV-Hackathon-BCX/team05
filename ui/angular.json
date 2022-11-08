@@ -23,7 +23,8 @@
                 "glob": "*",
                 "input": "./node_modules/leaflet/dist/images",
                 "output": "/assets/"
-              }
+              },
+              "src/assets"
             ],
             "styles": [
               "src/styles.css",
@@ -101,5 +102,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
