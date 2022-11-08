@@ -35,6 +35,11 @@ curl localhost:8080/station
   ./gradlew quarkusDev
   ```
 
+* startup service on all ip addresses
+  ```shell
+  ./gradlew -Dquarkus.http.host=0.0.0.0 quarkusDev
+  ```
+
 * check OpenAPI schema
   ```shell
   curl http://localhost:8080/q/openapi
