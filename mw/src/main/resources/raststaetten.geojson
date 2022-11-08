@@ -1,0 +1,313 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-ide",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2022-11-08T11:44:34Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/369332491",
+        "highway": "services",
+        "name": "Wolfslake-Ost",
+        "toilets": "yes",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.0088142,
+              52.686675
+            ],
+            [
+              13.0085296,
+              52.6847936
+            ],
+            [
+              13.0084556,
+              52.6841407
+            ],
+            [
+              13.0086217,
+              52.6841105
+            ],
+            [
+              13.0101999,
+              52.684308
+            ],
+            [
+              13.0102556,
+              52.6845094
+            ],
+            [
+              13.0104229,
+              52.6852837
+            ],
+            [
+              13.0106394,
+              52.6862986
+            ],
+            [
+              13.0103767,
+              52.6863197
+            ],
+            [
+              13.009588,
+              52.6863832
+            ],
+            [
+              13.0090569,
+              52.6867376
+            ],
+            [
+              13.0088142,
+              52.686675
+            ]
+          ]
+        ]
+      },
+      "id": "way/369332491"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/369332497",
+        "highway": "services",
+        "name": "Wolfslake-West",
+        "toilets": "yes",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.0049033,
+              52.6675122
+            ],
+            [
+              13.0046586,
+              52.6674113
+            ],
+            [
+              13.0044241,
+              52.6672918
+            ],
+            [
+              13.0039577,
+              52.6670606
+            ],
+            [
+              13.0036787,
+              52.6669256
+            ],
+            [
+              13.0035293,
+              52.6668534
+            ],
+            [
+              13.0033893,
+              52.6661347
+            ],
+            [
+              13.0032002,
+              52.6651948
+            ],
+            [
+              13.0033278,
+              52.6651417
+            ],
+            [
+              13.0035286,
+              52.6650582
+            ],
+            [
+              13.004153,
+              52.665024
+            ],
+            [
+              13.0047484,
+              52.6645975
+            ],
+            [
+              13.0049206,
+              52.6645394
+            ],
+            [
+              13.0049668,
+              52.6648792
+            ],
+            [
+              13.0052868,
+              52.6674299
+            ],
+            [
+              13.0049033,
+              52.6675122
+            ]
+          ]
+        ]
+      },
+      "id": "way/369332497"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/503386372",
+        "addr:city": "Oberkrämer",
+        "addr:country": "DE",
+        "addr:housenumber": "4",
+        "addr:postcode": "16727",
+        "addr:street": "Eichstädter Chaussee",
+        "addr:suburb": "Eichstädt",
+        "bistro": "yes",
+        "capacity:charging_station": "1",
+        "capacity:restaurant": "60",
+        "capacity:shower": "3",
+        "capacity:toilets": "6",
+        "capacity:truck": "200",
+        "capacity:truck_diesel_pumps": "3",
+        "capacity:washers": "1",
+        "changing_table": "yes",
+        "changing_table:location": "room",
+        "contact:fax": "+49 3304 502394",
+        "contact:phone": "+49 3304 502308",
+        "contact:website": "http://store.total.de/de_DE/ND150470",
+        "copier": "yes",
+        "fast_food": "yes",
+        "fax": "yes",
+        "highway": "services",
+        "internet_access": "wlan",
+        "name": "Autohof Oberkrämer",
+        "opening_hours": "24/7",
+        "operator": "Total",
+        "payment:american_express": "yes",
+        "payment:bancomat": "yes",
+        "payment:dkv": "yes",
+        "payment:ec": "yes",
+        "payment:girocard": "yes",
+        "payment:maestro": "yes",
+        "payment:mastercard": "yes",
+        "payment:uta": "yes",
+        "payment:visa": "yes",
+        "playground": "yes",
+        "restaurant": "yes",
+        "sanitary_dump_station": "yes",
+        "shop": "yes",
+        "shower:fee": "yes",
+        "toilets": "yes",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.1088978,
+              52.7081097
+            ],
+            [
+              13.1090103,
+              52.7079452
+            ],
+            [
+              13.109449,
+              52.7079568
+            ],
+            [
+              13.109388,
+              52.708958
+            ],
+            [
+              13.108998,
+              52.7095635
+            ],
+            [
+              13.1080452,
+              52.7093645
+            ],
+            [
+              13.1069244,
+              52.709141
+            ],
+            [
+              13.1066911,
+              52.7090555
+            ],
+            [
+              13.1060552,
+              52.7088991
+            ],
+            [
+              13.1060275,
+              52.7089406
+            ],
+            [
+              13.1055502,
+              52.7088234
+            ],
+            [
+              13.105578,
+              52.7087819
+            ],
+            [
+              13.1052978,
+              52.708719
+            ],
+            [
+              13.1055874,
+              52.7082574
+            ],
+            [
+              13.1058195,
+              52.7083039
+            ],
+            [
+              13.1060535,
+              52.707935
+            ],
+            [
+              13.1061192,
+              52.7078314
+            ],
+            [
+              13.1061908,
+              52.7078481
+            ],
+            [
+              13.1062134,
+              52.7078229
+            ],
+            [
+              13.1086807,
+              52.707925
+            ],
+            [
+              13.1087865,
+              52.7079402
+            ],
+            [
+              13.1088186,
+              52.7079557
+            ],
+            [
+              13.10884,
+              52.7079683
+            ],
+            [
+              13.1088935,
+              52.7080432
+            ],
+            [
+              13.1088978,
+              52.7081097
+            ]
+          ]
+        ]
+      },
+      "id": "way/503386372"
+    }
+  ]
+}
