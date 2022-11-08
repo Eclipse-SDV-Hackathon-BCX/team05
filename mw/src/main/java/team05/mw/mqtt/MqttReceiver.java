@@ -1,4 +1,4 @@
-package team05.mw.rp;
+package team05.mw.mqtt;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,6 +6,9 @@ import io.quarkus.runtime.Startup;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.reactive.messaging.Message;
+import team05.mw.ecal.EcalMessage;
+import team05.mw.ecal.EcalMessageMapper;
+import team05.mw.ecal.EcalMessageProcessor;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.concurrent.CompletionStage;
@@ -16,19 +19,25 @@ import java.util.concurrent.CompletionStage;
 public class MqttReceiver {
 
     private final ObjectMapper objectMapper;
+    private final EcalMessageMapper messageMapper;
+    private final EcalMessageProcessor messageProcessor;
 
-    public MqttReceiver(ObjectMapper objectMapper) {
+    public MqttReceiver(ObjectMapper objectMapper, EcalMessageMapper messageMapper, EcalMessageProcessor messageProcessor) {
         this.objectMapper = objectMapper;
+        this.messageMapper = messageMapper;
+        this.messageProcessor = messageProcessor;
     }
 
     @Incoming("ecal")
-    public CompletionStage<Void> consume(Message<EcalMessage> ecalMessage) {
+    public CompletionStage<Void> consume(Message<byte[]> ecalMessage) {
         log.info("received message: {}", ecalMessage.getMetadata());
-        log.info("{}", messageToJson(ecalMessage));
+        EcalMessage message = messageMapper.fromBytes(ecalMessage.getPayload());
+        log.info("{}", messageToJson(message));
+        messageProcessor.process(message);
         return ecalMessage.ack();
     }
 
-    private String messageToJson(Message<EcalMessage> ecalMessage) {
+    private String messageToJson(EcalMessage ecalMessage) {
         try {
             return objectMapper.writeValueAsString(ecalMessage);
         } catch (JsonProcessingException e) {

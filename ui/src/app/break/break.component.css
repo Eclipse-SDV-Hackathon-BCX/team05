@@ -1,0 +1,38 @@
+.break {
+  color: #0F62FE;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+:host {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+app-icon {
+  flex-basis: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+.break-value {
+  font-weight: bold;
+}
+
+.line {
+  position: absolute;
+  left: 44px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  color: black;
+}

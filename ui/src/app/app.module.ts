@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IconModule, UIShellModule } from 'carbon-components-angular';
+import { ButtonModule } from 'carbon-components-angular';
 
 import { AppComponent } from './app.component';
 import { BreakComponent } from './break/break.component';
+import { BadgeComponent } from './common/badge/badge.component';
 import { DestinationComponent } from './destination/destination.component';
 import { MapComponent } from './map/map.component';
 import { PanelComponent } from './panel/panel.component';
@@ -21,10 +22,12 @@ import { HttpClientModule } from '@angular/common/http';
     RecommendationComponent,
     BreakComponent,
     IconComponent,
+    BadgeComponent
   ],
   imports: [
     HttpClientModule,
-    BrowserModule
+    BrowserModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

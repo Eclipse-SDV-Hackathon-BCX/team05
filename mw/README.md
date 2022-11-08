@@ -2,13 +2,20 @@
 
 - should provide REST API endpoints for
   - /station/list
-  - /station/<id>/status
+  - /station/{statioId}/status
 
   - consumes data either
     - from database (persisted timeseries, see ../conv)
     - realtime e.g. MQTT, Zenoh
 
 - based on Quarkus 2.13.4
+
+## TODOs
+
+- use data from raststaetten.geojson to setup Station repo (=> "capacity:truck": "200")
+- implement station detection (in TruckService)
+- implement decreaseOccupied (in TruckService)
+- ...
 
 ## Build and run native image
 
@@ -26,6 +33,11 @@ curl localhost:8080/station
 * startup service
   ```shell
   ./gradlew quarkusDev
+  ```
+
+* startup service on all ip addresses
+  ```shell
+  ./gradlew -Dquarkus.http.host=0.0.0.0 quarkusDev
   ```
 
 * check OpenAPI schema
