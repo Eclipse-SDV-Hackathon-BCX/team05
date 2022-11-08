@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
-class RpResourceTest {
+class StationResourceTest {
 
     @Test
     void list() {

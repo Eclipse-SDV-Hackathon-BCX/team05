@@ -5,10 +5,12 @@ import lombok.Data;
 
 @Data
 @Builder
-public class RpLight {
+public class Station {
 
     private String id;
     private String name;
-    private boolean full;
+    private Coordinates coordinates;
+    private int capacity;
+    private int occupancy;
 
 }

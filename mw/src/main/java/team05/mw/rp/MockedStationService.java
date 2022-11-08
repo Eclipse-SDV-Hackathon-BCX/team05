@@ -8,9 +8,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Singleton
-public class MockedRpService implements RpService {
+public class MockedStationService implements StationService {
 
-    private final Map<String, Rp> internalStore = new HashMap<>();
+    private final Map<String, Station> internalStore = new HashMap<>();
 
     @PostConstruct
     public void setup() {
@@ -20,10 +20,10 @@ public class MockedRpService implements RpService {
 
     private void createAndStoreMockedRp(String id, String name, double lat, double lng, int capacity, int occupancy) {
         internalStore.put(id,
-                Rp.builder()
+                Station.builder()
                         .id(id)
                         .name(name)
-                        .coordinates(RpCoordinates.builder()
+                        .coordinates(Coordinates.builder()
                                 .lat(lat)
                                 .lng(lng)
                                 .build())
@@ -33,24 +33,24 @@ public class MockedRpService implements RpService {
     }
 
     @Override
-    public List<RpLight> list() {
+    public List<StationLight> list() {
         return internalStore.values()
                 .stream()
-                .map(rp -> RpLight.builder()
-                        .id(rp.getId())
-                        .name(rp.getName())
-                        .full(rp.getCapacity() == rp.getOccupancy())
+                .map(station -> StationLight.builder()
+                        .id(station.getId())
+                        .name(station.getName())
+                        .full(station.getCapacity() == station.getOccupancy())
                         .build())
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Rp getRp(String rpId) {
+    public Station getRp(String rpId) {
         return internalStore.get(rpId);
     }
 
     @Override
-    public List<RpLight> near(NearRequest request) {
+    public List<StationLight> near(NearRequest request) {
         return list();
     }
 

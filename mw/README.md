@@ -1,14 +1,14 @@
 # Middleware
 
 - should provide REST API endpoints for
-  - /stations
-  - /station/<id>status
+  - /station/list
+  - /station/<id>/status
 
   - consumes data either
     - from database (persisted timeseries, see ../conv)
     - realtime e.g. MQTT, Zenoh
 
-- Based on Quarkus 2.13.4
+- based on Quarkus 2.13.4
 
 ## Build and run native image
 
@@ -18,7 +18,7 @@ Also see instructions here:
 ```
 ./gradlew build -Dquarkus.package.type=native
 build/mw-1.0-SNAPSHOT-runner
-curl localhost:8080/rp
+curl localhost:8080/station
 ```
 
 ## REST API
@@ -36,4 +36,4 @@ curl localhost:8080/rp
 * open [Swagger UI](http://localhost:8080/q/swagger-ui)
 
 ## Glossar
-* rp: service area
+* station: service area
