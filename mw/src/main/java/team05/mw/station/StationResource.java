@@ -2,7 +2,6 @@ package team05.mw.station;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/station")
@@ -17,8 +16,8 @@ public class StationResource {
     @GET
     @Path("/list")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response list() {
-        return Response.ok(stationService.list()).build();
+    public List<Station> list() {
+        return stationService.list();
     }
 
     @GET
@@ -31,7 +30,7 @@ public class StationResource {
     @POST
     @Path("/near")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<StationLight> near(NearStationsRequest req) {
+    public List<Station> near(NearStationsRequest req) {
         return stationService.near(req);
     }
 

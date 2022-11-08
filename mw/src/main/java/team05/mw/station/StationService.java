@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface StationService {
 
-    List<StationLight> list();
+    List<Station> list();
     Station getStation(String rpId);
-    List<StationLight> near(NearStationsRequest request);
+    List<Station> near(NearStationsRequest request);
     void increaseOccupied(String stationId);
 
 }

@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 @Singleton
 @Slf4j
@@ -40,15 +39,10 @@ public class MockedStationService implements StationService {
     }
 
     @Override
-    public List<StationLight> list() {
+    public List<Station> list() {
         return internalStore.values()
                 .stream()
-                .map(station -> StationLight.builder()
-                        .id(station.getId())
-                        .name(station.getName())
-                        .full(station.getCapacity() == station.getOccupancy().get())
-                        .build())
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -57,7 +51,7 @@ public class MockedStationService implements StationService {
     }
 
     @Override
-    public List<StationLight> near(NearStationsRequest request) {
+    public List<Station> near(NearStationsRequest request) {
         return list();
     }
 
