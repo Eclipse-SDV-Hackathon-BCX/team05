@@ -3,6 +3,8 @@ package team05.mw.rp;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @Data
 @Builder
 public class Station {
@@ -11,6 +13,6 @@ public class Station {
     private String name;
     private Coordinates coordinates;
     private int capacity;
-    private int occupancy;
+    private AtomicInteger occupancy;
 
 }

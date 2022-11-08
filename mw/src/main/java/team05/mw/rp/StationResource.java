@@ -25,7 +25,7 @@ public class StationResource {
     @Path("/{rpId}/status")
     @Produces(MediaType.APPLICATION_JSON)
     public Station getRp(@PathParam("rpId") String rpId) {
-        return stationService.getRp(rpId);
+        return stationService.getStation(rpId);
     }
 
     @POST

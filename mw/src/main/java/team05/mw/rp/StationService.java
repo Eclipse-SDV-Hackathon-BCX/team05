@@ -5,7 +5,8 @@ import java.util.List;
 public interface StationService {
 
     List<StationLight> list();
-    Station getRp(String rpId);
-
+    Station getStation(String rpId);
     List<StationLight> near(NearRequest request);
+    void increaseOccupied(String stationId);
+
 }
