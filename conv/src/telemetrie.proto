@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+package wcx;
+
+message Status {
+  required int32 acceleration = 1;
+  required int32 longitude = 2;
+  required int32 latitude = 3;
+}
