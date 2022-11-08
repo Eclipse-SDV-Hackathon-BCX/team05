@@ -4,11 +4,19 @@ Challenge see https://github.com/Eclipse-SDV-Hackathon-BCX/hackchallenge-hack-th
 
 ## Goal: provide insights into parking situations for trucks along highways
 
+```mermaid
+ggraph LR
+    A[Car/Simulator] -->|eCal| B(Converter/Bridge)
+    B --> |MQTT|C{Middleware}
+    C -->|REST| D[UI]
+    C -->|business logic| C
+```
+
 ## Components
 
-### Simulator
+### Simulator (sim)
 
-Publish additional data as ecal needed for interpretation
+Publish additional/simulated data as ecal needed for interpretation
 
 Telemetry:
 - GPS coordinates (lat, long)
@@ -19,11 +27,16 @@ Telemetry:
 Output:
 - eCal data
 
-### Converter
+### Converter (conv)
 
-### Middleware
+Subscribes to eCal topic, forwards via MQTT broker
 
-### UI
+### Middleware (mw)
 
+Subscribes to MQTT broker, gives access to data for highway stop status
+
+### UI (ui)
+
+Display data for highway stops
 
 ## Architecture
