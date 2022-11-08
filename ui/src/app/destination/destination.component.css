@@ -1,25 +1,34 @@
 :host {
-  background: #fff;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: row;
 }
+
 app-icon {
   flex-basis: 0;
 }
+
 .content {
+  display: flex;
+  flex-direction: column;
   flex-basis: 0;
+  flex-grow: 1;
 }
+
 .destination {
-
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: space-between;
 }
+
 .dest-value {
-
-}
-.dest-label {
-  align-self: end;
   font-weight: bold;
 }
+
+.dest-label {
+}
+
 .address {
   font-style: italic;
   color: #A8A8A8;
