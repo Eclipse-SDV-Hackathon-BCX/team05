@@ -1,0 +1,26 @@
+:host {
+  background: #fff;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: row;
+}
+app-icon {
+  flex-basis: 0;
+}
+.content {
+  flex-basis: 0;
+}
+.destination {
+
+}
+.dest-value {
+
+}
+.dest-label {
+  align-self: end;
+  font-weight: bold;
+}
+.address {
+  font-style: italic;
+  color: #A8A8A8;
+}
