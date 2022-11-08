@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
 import * as L from 'leaflet';
+import { ServiceStationService } from '../service-station.service';
 
 @Component({
   selector: 'app-map',
@@ -44,10 +45,13 @@ export class MapComponent implements AfterViewInit {
     tiles.addTo(this.map);
   }
 
-  constructor() { }
+  constructor(private stationService: ServiceStationService) { 
+
+  }
 
   ngAfterViewInit(): void {
     this.initMap();
+    this.stationService.getStations()
   }
 
 }

@@ -9,6 +9,7 @@ import { MapComponent } from './map/map.component';
 import { PanelComponent } from './panel/panel.component';
 import { RecommendationComponent } from './recommendation/recommendation.component';
 import { IconComponent } from './common/icon/icon.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { IconComponent } from './common/icon/icon.component';
     IconComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule
   ],
   providers: [],
