@@ -13,7 +13,7 @@ class StationResourceTest {
     @Test
     void list() {
         given()
-                .when().get("/rp")
+                .when().get("/station/list")
                 .then()
                 .statusCode(200)
                 .body(is("[{\"id\":\"RP-1\",\"name\":\"Heide Nord\",\"full\":false},{\"id\":\"RP-2\",\"name\":\"Zum Wilden Hirsch\",\"full\":true}]"));
@@ -22,7 +22,7 @@ class StationResourceTest {
     @Test
     void getRp() {
         given()
-                .when().get("/rp/RP-1")
+                .when().get("/station/RP-1/status")
                 .then()
                 .statusCode(200)
                 .body(is("{\"id\":\"RP-1\",\"name\":\"Heide Nord\",\"coordinates\":{\"lat\":0.0,\"lng\":0.0},\"capacity\":3,\"occupancy\":2}"));
