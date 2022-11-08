@@ -7,9 +7,9 @@ import lombok.Data;
 @Builder
 public class EcalMessage {
 
-    private String carId;
+    private String uuid;
+    private int acceleration;
     private double latitude;
     private double longitude;
-    private int accel;
 
 }

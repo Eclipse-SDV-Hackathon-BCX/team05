@@ -16,19 +16,25 @@ import java.util.concurrent.CompletionStage;
 public class MqttReceiver {
 
     private final ObjectMapper objectMapper;
+    private final EcalMessageMapper messageMapper;
+    private final EcalMessageProcessor messageProcessor;
 
-    public MqttReceiver(ObjectMapper objectMapper) {
+    public MqttReceiver(ObjectMapper objectMapper, EcalMessageMapper messageMapper, EcalMessageProcessor messageProcessor) {
         this.objectMapper = objectMapper;
+        this.messageMapper = messageMapper;
+        this.messageProcessor = messageProcessor;
     }
 
     @Incoming("ecal")
-    public CompletionStage<Void> consume(Message<EcalMessage> ecalMessage) {
+    public CompletionStage<Void> consume(Message<byte[]> ecalMessage) {
         log.info("received message: {}", ecalMessage.getMetadata());
-        log.info("{}", messageToJson(ecalMessage));
+        EcalMessage message = messageMapper.fromBytes(ecalMessage.getPayload());
+        log.info("{}", messageToJson(message));
+        messageProcessor.process(message);
         return ecalMessage.ack();
     }
 
-    private String messageToJson(Message<EcalMessage> ecalMessage) {
+    private String messageToJson(EcalMessage ecalMessage) {
         try {
             return objectMapper.writeValueAsString(ecalMessage);
         } catch (JsonProcessingException e) {
