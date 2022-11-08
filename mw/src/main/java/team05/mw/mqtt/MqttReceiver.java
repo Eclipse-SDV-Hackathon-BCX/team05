@@ -1,4 +1,4 @@
-package team05.mw.rp;
+package team05.mw.mqtt;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,6 +6,9 @@ import io.quarkus.runtime.Startup;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.reactive.messaging.Message;
+import team05.mw.ecal.EcalMessage;
+import team05.mw.ecal.EcalMessageMapper;
+import team05.mw.ecal.EcalMessageProcessor;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.concurrent.CompletionStage;

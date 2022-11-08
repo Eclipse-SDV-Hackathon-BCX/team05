@@ -1,6 +1,8 @@
-package team05.mw.rp;
+package team05.mw.truck;
 
 import lombok.extern.slf4j.Slf4j;
+import team05.mw.common.Coordinates;
+import team05.mw.ecal.EcalMessage;
 
 import javax.inject.Singleton;
 import java.util.Collections;

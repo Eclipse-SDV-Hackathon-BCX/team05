@@ -1,13 +1,12 @@
-package team05.mw.rp;
+package team05.mw.common;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Builder
 @Data
-public class NearRequest {
+public class Coordinates {
 
-    private int maxDistanceInMeter;
     private double lat;
     private double lng;
 

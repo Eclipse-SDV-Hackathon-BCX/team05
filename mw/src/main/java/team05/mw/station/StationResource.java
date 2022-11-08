@@ -1,4 +1,4 @@
-package team05.mw.rp;
+package team05.mw.station;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -22,16 +22,16 @@ public class StationResource {
     }
 
     @GET
-    @Path("/{rpId}/status")
+    @Path("/{stationId}/status")
     @Produces(MediaType.APPLICATION_JSON)
-    public Station getRp(@PathParam("rpId") String rpId) {
-        return stationService.getStation(rpId);
+    public Station getRp(@PathParam("stationId") String stationId) {
+        return stationService.getStation(stationId);
     }
 
     @POST
     @Path("/near")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<StationLight> near(NearRequest req) {
+    public List<StationLight> near(NearStationsRequest req) {
         return stationService.near(req);
     }
 

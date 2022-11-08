@@ -1,6 +1,7 @@
-package team05.mw.rp;
+package team05.mw.station;
 
 import lombok.extern.slf4j.Slf4j;
+import team05.mw.common.Coordinates;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Singleton;
@@ -56,7 +57,7 @@ public class MockedStationService implements StationService {
     }
 
     @Override
-    public List<StationLight> near(NearRequest request) {
+    public List<StationLight> near(NearStationsRequest request) {
         return list();
     }
 

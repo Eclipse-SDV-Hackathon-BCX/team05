@@ -1,4 +1,4 @@
-package team05.mw.rp;
+package team05.mw.ecal;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Assertions;

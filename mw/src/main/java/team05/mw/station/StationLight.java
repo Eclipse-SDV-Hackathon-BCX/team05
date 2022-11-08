@@ -1,4 +1,4 @@
-package team05.mw.rp;
+package team05.mw.station;
 
 import lombok.Builder;
 import lombok.Data;

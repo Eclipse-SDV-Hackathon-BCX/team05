@@ -1,4 +1,4 @@
-package team05.mw.rp;
+package team05.mw.ecal;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;

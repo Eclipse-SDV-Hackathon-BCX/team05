@@ -1,7 +1,8 @@
-package team05.mw.rp;
+package team05.mw.truck;
 
 import lombok.Builder;
 import lombok.Data;
+import team05.mw.common.Coordinates;
 
 @Builder
 @Data

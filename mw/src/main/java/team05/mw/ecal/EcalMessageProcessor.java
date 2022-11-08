@@ -1,6 +1,7 @@
-package team05.mw.rp;
+package team05.mw.ecal;
 
 import lombok.extern.slf4j.Slf4j;
+import team05.mw.truck.TruckService;
 
 import javax.enterprise.context.ApplicationScoped;
 

@@ -1,4 +1,4 @@
-package team05.mw.rp;
+package team05.mw.truck;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
