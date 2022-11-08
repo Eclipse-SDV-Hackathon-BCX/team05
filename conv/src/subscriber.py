@@ -33,9 +33,11 @@ def run():
   mqttclient = connect_mqtt()
   mqttclient.loop_start()
 
-  # Callback for receiving messages, pulish
+  # Callback for receiving messages, pulish to mqtt
+  # TODO: throttle/filter data - too high volume to forward directly
   def callback(topic_name, msg, time):
-    mqttclient.publish(config.topic, json.dumps(MessageToJson(msg))) 
+  #  print(config.topic, json.dumps(MessageToJson(msg)))
+    mqttclient.publish(config.topic, MessageToJson(msg)) 
     
   # Initialize eCAL
   ecal_core.initialize(sys.argv, "eCal-Subscriber")
