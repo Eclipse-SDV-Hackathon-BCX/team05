@@ -1,10 +1,38 @@
+import re
 import sys
 import time
 
 import ecal.core.core as ecal_core
 from ecal.core.publisher import ProtoPublisher
+from pykml import parser
+import geopy.distance
 
 import telemetrie_pb2
+
+coordinates = []
+coordinates_size = 0
+
+STOP_longitude = 13.009171
+STOP_latitude = 52.685639
+STOP = (STOP_latitude, STOP_longitude)
+
+#[[lat,long,0] for i in range(50)]
+
+stopIndex = False
+## create array
+with open("LKW-Strecke.kml") as file:
+    doc = parser.parse(file).getroot().Document
+    coordinates_tmp = re.split('\s+', str(doc.Placemark.LineString.coordinates).replace("\n",""))[1:-1]
+    coordinates_size = len(coordinates_tmp)
+    for coordinate in coordinates_tmp:
+        coordinate = coordinate.split(',')[:-1]
+        coordinate.append(90)
+        coordinates.append(coordinate)
+        current = coordinate[1], coordinate[0]
+        distance = int(geopy.distance.geodesic(current, STOP).m)
+        if ( distance < 100 and not stopIndex):
+            coordinates= coordinates + [[STOP_longitude,STOP_latitude,0] for i in range(50)]
+            stopIndex = True
 
 if __name__ == "__main__":
     # initialize eCAL API. The name of our Process will be "Python Hello World Publisher"
@@ -20,14 +48,20 @@ if __name__ == "__main__":
     # the process from another application)
     while ecal_core.ok():
         status = telemetrie_pb2.Status()
-        status.acceleration = 1
-        status.longitude = 1
-        status.latitude = 1
+        status.uuid = "391a05ef-471a-442d-bca1-c24882012ce2"
+        status.acceleration = 0
+        status.longitude = 13.009171
+        status.latitude = 52.685639
+        print("Sending Standing Truck 1: {}".format(status))
+        pub.send(status)
 
-        #print(status.SerializeToString())
-        # Create a message with a counter an publish it to the topic
-        #current_message = "Hello World {:6d}".format(counter)
-        print("Sending: {}".format(status))
+        generated_status = coordinates[counter%coordinates_size]
+        status = telemetrie_pb2.Status()
+        status.uuid = "a593ff4c-562c-4f95-a5be-a6de91e13776"
+        status.acceleration = int(generated_status[2])
+        status.longitude = float(generated_status[0])
+        status.latitude = float(generated_status[1])
+        print("Sending Driving Truck 2: {}".format(status))
         pub.send(status)
 
         # Sleep 500 ms
