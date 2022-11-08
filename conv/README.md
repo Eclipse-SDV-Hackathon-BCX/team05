@@ -30,3 +30,16 @@ active env
 `python3 -m venv venv/`
 `source venv/bin/activate`
 `pip3 install -r src/requirements.txt` 
+
+
+
+Raststätten Liste
+
+Wolfslake-Ost
+[13.008814, 52.686675]
+
+Wolfslake-West
+[13.004903, 52.667512]
+
+Autohof Oberkrämer
+[13.108898, 52.70811]
