@@ -87,7 +87,7 @@ public class MockedStationService implements StationService {
         if (!trucksInStation.contains(truckId)) {
             trucksInStation.add(truckId);
             increaseOccupied(station);
-            log.info("truck #{} entered station", truckId);
+            log.info("truck #{} entered station {}", truckId, station.getName());
         }
     }
 
