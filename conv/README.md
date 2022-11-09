@@ -14,10 +14,11 @@ The output that gets sent/stored is in json format:
 
 ``` 
 {
-    "acceleration": 1,
-    "longitude": 1,
-    "latitude": 1
-}"
+  "uuid": "391a05ef-471a-442d-bca1-c24882012ce2",
+  "acceleration": 0,
+  "longitude": 13.009171,
+  "latitude": 52.68564
+}
 ``` 
 
 

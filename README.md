@@ -4,6 +4,8 @@ Challenge see https://github.com/Eclipse-SDV-Hackathon-BCX/hackchallenge-hack-th
 
 ## Goal: provide insights into parking situations for trucks along highways
 
+## Architecture
+
 ```mermaid
 graph LR
     E[Playback] -->|eCal| B
@@ -40,5 +42,3 @@ Subscribes to MQTT broker, gives access to data for highway stop status
 ### UI (ui)
 
 Display data for highway stops
-
-## Architecture
