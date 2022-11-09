@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
+import * as omnivore from '@mapbox/leaflet-omnivore';
 import * as L from 'leaflet';
 import { ServiceStationService, Backend_Service_model } from '../service-station.service';
 
@@ -55,6 +56,7 @@ export class MapComponent implements AfterViewInit {
     L.marker([52.708480, 13.0232002], {icon: this.timeMarker}).addTo(this.map);
 
     tiles.addTo(this.map);
+    omnivore.kml('assets/LKW-Strecke.kml').addTo(this.map);
   }
 
   addStations(stations:Backend_Service_model[]):void {
