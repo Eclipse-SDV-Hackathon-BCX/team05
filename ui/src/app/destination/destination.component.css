@@ -21,6 +21,7 @@ app-icon {
   flex-direction: row;
   flex-grow: 1;
   justify-content: space-between;
+  font-size: 14pt;
 }
 
 .dest-value {

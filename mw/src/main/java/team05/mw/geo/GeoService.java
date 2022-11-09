@@ -31,6 +31,14 @@ public class GeoService {
         this.config = config;
     }
 
+    public Roadhouse isInRoadhouse(double[] position){
+        for(Roadhouse roadhouse: roadhouses){
+            if(roadhouse.pointInarea(position)){
+                return roadhouse;
+            }
+        }
+        return null;
+    }
     @PostConstruct
     public void setup() {
         roadhouses = new ArrayList<>();
