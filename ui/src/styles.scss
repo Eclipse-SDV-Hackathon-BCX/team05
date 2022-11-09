@@ -16,6 +16,9 @@
   width: auto !important;
 }
 
+div, span, button {
+  font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+}
 
 .bx--btn-set .bx--btn:first-of-type:not(:focus) {
   box-shadow: inherit;
@@ -38,7 +41,7 @@
   color: #ffffff;
 }
 .bx--btn {
-  font-size: 0.875rem;
+  font-size: 1.1rem;
   font-weight: 400;
   line-height: 1.28572;
   letter-spacing: 0.16px;

@@ -22,14 +22,20 @@ app-icon {
   flex-direction: row;
   flex-grow: 1;
   justify-content: space-between;
+  font-size: 14pt;
+  margin: 5px 0;
 }
 .dest-value {
   font-weight: bold;
 }
 
 .dest-label {
+  font-weight: bold;
 }
-
+.label {
+  display: flex;
+  justify-content: space-between;
+}
 .rating {
   display: flex;
   flex-direction: row;
@@ -76,4 +82,5 @@ app-icon {
 
 .button-bar {
   padding-top: 10px;
+  text-align: end;
 }
