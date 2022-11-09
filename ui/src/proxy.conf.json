@@ -3,5 +3,10 @@
   "/api": {
     "target": "http://10.222.23.26:8080",
     "secure": false
+  },
+  "/truck": {
+    "target": "ws://10.222.23.26:8080/truck/a593ff4c-562c-4f95-a5be-a6de91e13776/position",
+    "secure": false,
+    "ws": true
   }
 }
