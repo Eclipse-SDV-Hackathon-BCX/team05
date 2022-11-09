@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
 import * as omnivore from '@mapbox/leaflet-omnivore';
 import * as L from 'leaflet';
-import { ServiceStationService, Backend_Service_model } from '../service-station.service';
+import { ServiceStationService, Backend_Service_model, Occupancy } from '../service-station.service';
 
 interface UI_Station{
   station: Backend_Service_model,
@@ -27,14 +27,22 @@ export class MapComponent implements AfterViewInit {
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
   })
 
-  private stationMarker = L.icon({
+  private stationMarkerFree = L.icon({
     iconUrl: 'assets/fuel_green.svg',
     iconSize:     [80, 90], // size of the icon
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
   })
 
-  constructor(private stationService: ServiceStationService) {
+  private stationMarkerFull = L.icon({
+    iconUrl: 'assets/Fuel_red.svg',
+    iconSize:     [80, 90], // size of the icon
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+  })
+
+
+  constructor(private stationService: ServiceStationService) { 
   }
 
   private initMap(): void {
@@ -48,7 +56,7 @@ export class MapComponent implements AfterViewInit {
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 10,
-      minZoom: 12.2,
+      minZoom: 12,
 
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
@@ -59,32 +67,39 @@ export class MapComponent implements AfterViewInit {
     omnivore.kml('assets/LKW-Strecke.kml').addTo(this.map);
   }
 
-  addStations(stations:Backend_Service_model[]):void {
+  private addStations(stations:Backend_Service_model[]):void {
     stations.forEach(station => {
-      let marker = L.marker([station.coordinates.lng, station.coordinates.lat], {icon: this.stationMarker})
+      const icon = this.getIconFromOccupancy(station.capacity, station.occupancy);
+      let marker = L.marker([station.coordinates.lng, station.coordinates.lat], {icon})
         .addTo(this.map)
         .bindPopup(station.name)
-        this.stations.push({station, marker});
-
+        this.stations.push({station, marker});  
     })
   }
 
+  private getIconFromOccupancy(capacity:number, occupancy:number):L.Icon {
+    return this.stationService.getStatusfromOcupancy(capacity, occupancy) === Occupancy.Free
+        ? this.stationMarkerFree : this.stationMarkerFull;
+  }
+
   private updateStationOccupancy():void {
-    this.stations.forEach(stat => {
-   //   console.log(stat);
-   //   let status = this.stationService.getStatusfromOcupancy(stat.station.capacity, s.occupancy)
-      stat.marker.setIcon(this.timeMarker);
-    });
+    this.stationService.getStations().subscribe(
+      updatedStations =>  {
+        this.stations.forEach(currentStation => {
+          let updatedStation = (updatedStations.find(single => currentStation.station.id === single.id));          
+          currentStation.marker.setIcon(this.getIconFromOccupancy(updatedStation?.capacity||0, updatedStation?.occupancy||0));
+        });
+      }
+    );
   }
 
   ngAfterViewInit(): void {
     this.initMap();
     this.stationService.getStations().subscribe(
       stations => this.addStations(stations)
-
     )
 
-    setTimeout(() => { this.updateStationOccupancy() }, 5000);
+    setInterval(() => { this.updateStationOccupancy() }, 5000);
   }
 
 }

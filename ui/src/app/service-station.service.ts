@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http"
 import { Observable, Subscription, switchMap } from 'rxjs';
 
 
-enum Occupancy {
+export enum Occupancy {
   Full,
   Medium,
   Free
