@@ -16,7 +16,7 @@ public class MockedStationService implements StationService {
 
     @PostConstruct
     public void setup() {
-        createAndStoreMockedRp("RP-1", "Wolfslake-Ost", 13.008814, 52.686675, 3, 2);
+        createAndStoreMockedRp("RP-1", "Wolfslake-Ost", 13.008814, 52.686675, 4, 2);
         createAndStoreMockedRp("RP-2", "Wolfslake-West", 13.004903, 52.667512, 5, 4);
         createAndStoreMockedRp("RP-3", "Autohof Oberkrämer", 13.108898, 52.70811, 5, 0);
     }
