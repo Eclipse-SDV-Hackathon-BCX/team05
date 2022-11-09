@@ -1,5 +1,6 @@
 package team05.mw.truck;
 
+import io.vertx.mutiny.core.eventbus.EventBus;
 import lombok.extern.slf4j.Slf4j;
 import team05.mw.common.Coordinates;
 import team05.mw.ecal.EcalMessage;
@@ -22,15 +23,22 @@ public class MockedTruckService implements TruckService {
 
     private final GeoService geoService;
     private final StationService stationService;
+    private final EventBus eventBus;
 
-    public MockedTruckService(GeoService geoService, StationService stationService) {
+    public MockedTruckService(GeoService geoService, StationService stationService, EventBus eventBus) {
         this.geoService = geoService;
         this.stationService = stationService;
+        this.eventBus = eventBus;
     }
 
     @Override
     public List<Truck> list() {
         return internalStore.values().stream().toList();
+    }
+
+    @Override
+    public Optional<Truck> findById(String truckId) {
+        return Optional.ofNullable(internalStore.get(truckId));
     }
 
     @Override
@@ -61,21 +69,6 @@ public class MockedTruckService implements TruckService {
 //        }
     }
 
-    @Override
-    public void detectStation(Truck truck) {
-
-    }
-
-    @Override
-    public void enterStation(Truck truck) {
-
-    }
-
-    @Override
-    public void leaveStation(Truck truck) {
-
-    }
-
     void updateTruckCurrentPosition(String truckId, Coordinates position) {
         Truck truck = internalStore.get(truckId);
         truck.setPosition(position);
@@ -87,6 +80,7 @@ public class MockedTruckService implements TruckService {
         if (optionalInStation.isEmpty()) {
             stationService.unpark(truckId);
         }
+        eventBus.publish("truck-position-update", truck);
     }
 
     class PositionConsumer implements Runnable {
