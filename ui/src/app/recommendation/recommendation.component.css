@@ -2,11 +2,13 @@
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 
 app-icon {
   flex-basis: 0;
 }
+
 
 .content {
   display: flex;
@@ -34,6 +36,7 @@ app-icon {
   flex-grow: 1;
   font-style: italic;
   color: #42BE65;
+  margin: 3px 0;
 }
 .rating-value {
   flex-basis: 0;
@@ -43,4 +46,34 @@ app-icon {
 .rating-label {
   flex-basis: 0;
   flex-grow: 1;
+}
+
+.line1 {
+  position: absolute;
+  left: 42px;
+  top: 0;
+  margin-top: 10px;
+  height: 10px;
+  width: 3px;
+  background-color: black;
+}
+
+.line2 {
+  position: absolute;
+  left: 42px;
+  top: 0;
+  margin-top: 69px;
+  height: 62px;
+  width: 3px;
+  background-color: black;
+}
+
+.cursor {
+  position: absolute;
+  top: 130px;
+  left: 20px;
+}
+
+.button-bar {
+  padding-top: 10px;
 }

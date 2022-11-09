@@ -28,11 +28,21 @@ app-icon {
   font-weight: bold;
 }
 
-.line {
+.line1 {
   position: absolute;
-  left: 44px;
+  left: 42px;
   top: 0;
-  bottom: 0;
+  margin-top: -25px;
+  height: 44px;
   width: 3px;
-  color: black;
+  background-color: black;
+}
+.line2 {
+  position: absolute;
+  left: 42px;
+  top: 0;
+  margin-top: 70px;
+  height: 44px;
+  width: 3px;
+  background-color: black;
 }
