@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import team05.mw.common.Coordinates;
 
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Data
@@ -15,5 +16,6 @@ public class Station {
     private Coordinates coordinates;
     private int capacity;
     private AtomicInteger occupancy;
+    private Set<String> trucksInStation;
 
 }

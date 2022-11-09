@@ -30,9 +30,9 @@ public class MqttReceiver {
 
     @Incoming("ecal")
     public CompletionStage<Void> consume(Message<byte[]> ecalMessage) {
-        log.info("received message: {}", ecalMessage.getMetadata());
+//        log.info("received message: {}", ecalMessage.getMetadata());
         EcalMessage message = messageMapper.fromBytes(ecalMessage.getPayload());
-        log.info("{}", messageToJson(message));
+//        log.info("{}", messageToJson(message));
         messageProcessor.process(message);
         return ecalMessage.ack();
     }

@@ -5,10 +5,7 @@ import team05.mw.common.Coordinates;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Singleton;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Singleton
@@ -20,8 +17,8 @@ public class MockedStationService implements StationService {
     @PostConstruct
     public void setup() {
         createAndStoreMockedRp("RP-1", "Wolfslake-Ost", 13.008814, 52.686675, 3, 2);
-        createAndStoreMockedRp("RP-2", "Wolfslake-West", 13.004903, 52.667512, 5, 5);
-        createAndStoreMockedRp("RP-3", "Autohof Oberkrämer", 13.108898, 52.70811, 0, 5);
+        createAndStoreMockedRp("RP-2", "Wolfslake-West", 13.004903, 52.667512, 5, 4);
+        createAndStoreMockedRp("RP-3", "Autohof Oberkrämer", 13.108898, 52.70811, 5, 0);
     }
 
     private void createAndStoreMockedRp(String id, String name, double lat, double lng, int capacity, int occupancy) {
@@ -35,6 +32,7 @@ public class MockedStationService implements StationService {
                                 .build())
                         .capacity(capacity)
                         .occupancy(new AtomicInteger(occupancy))
+                        .trucksInStation(new LinkedHashSet<>(capacity))
                         .build());
     }
 
@@ -56,13 +54,54 @@ public class MockedStationService implements StationService {
     }
 
     @Override
-    public void increaseOccupied(String stationId) {
-        Station station = internalStore.get(stationId);
+    public void increaseOccupied(Station station) {
         if (station == null) {
-            log.warn("station {} not found", stationId);
+            log.warn("station {} not found", station.getId());
             return;
         }
+
         station.getOccupancy().incrementAndGet();
+    }
+
+    @Override
+    public void decreaseOccupied(Station station) {
+        if (station == null) {
+            log.warn("station {} not found", station.getId());
+            return;
+        }
+
+        station.getOccupancy().decrementAndGet();
+    }
+
+    @Override
+    public Optional<Station> findByName(String name) {
+        return internalStore.values()
+                .stream()
+                .filter(station -> station.getName().equals(name))
+                .findFirst();
+    }
+
+    @Override
+    public void park(Station station, String truckId) {
+        Set<String> trucksInStation = station.getTrucksInStation();
+        if (!trucksInStation.contains(truckId)) {
+            trucksInStation.add(truckId);
+            increaseOccupied(station);
+            log.info("truck #{} entered station", truckId);
+        }
+    }
+
+    @Override
+    public void unpark(String truckId) {
+        internalStore.values()
+                .stream()
+                .filter(station -> station.getTrucksInStation().contains(truckId))
+                .findFirst()
+                .ifPresent(station -> {
+                    station.getTrucksInStation().remove(truckId);
+                    decreaseOccupied(station);
+                    log.info("truck #{} left station {}", truckId, station.getName());
+                });
     }
 
 }
