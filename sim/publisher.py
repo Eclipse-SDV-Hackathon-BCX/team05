@@ -12,8 +12,8 @@ import telemetrie_pb2
 coordinates = []
 coordinates_size = 0
 
-STOP_longitude = 13.004903
-STOP_latitude = 52.667512
+STOP_longitude = 13.009171
+STOP_latitude = 52.685639
 STOP = (STOP_latitude, STOP_longitude)
 
 #[[lat,long,0] for i in range(50)]
