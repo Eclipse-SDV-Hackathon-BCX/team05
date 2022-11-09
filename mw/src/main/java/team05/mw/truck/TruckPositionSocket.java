@@ -31,7 +31,7 @@ public class TruckPositionSocket {
     @OnOpen
     public void onOpen(Session session, @PathParam("truckId") String truckId) {
         sessions.put(truckId, session);
-        log.info("truck #{} position tracking stopped", truckId);
+        log.info("truck #{} position tracking started", truckId);
     }
 
     @OnClose

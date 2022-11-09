@@ -19,11 +19,12 @@ import java.util.concurrent.LinkedBlockingQueue;
 @Slf4j
 public class MockedTruckService implements TruckService {
 
-    private final int QUEUE_CAPACITY = 60 / 3;
     private final Map<String, Truck> internalStore = Collections.synchronizedMap(new HashMap<>());
     private final Map<String, Queue<Coordinates>> postitionQueues = new ConcurrentSkipListMap<>();
     @ConfigProperty(name = "team05.mw.no-queued-processing", defaultValue = "true")
-    private boolean noQueuedProcessing;
+    boolean noQueuedProcessing;
+    @ConfigProperty(name = "team05.mw.queue-capacity", defaultValue = "20")
+    int queueCapacity;
     private final GeoService geoService;
     private final StationService stationService;
     private final EventBus eventBus;
@@ -59,7 +60,7 @@ public class MockedTruckService implements TruckService {
             truck = Truck.builder()
                     .id(truckId)
                     .build();
-            positionQueue = new LinkedBlockingQueue<>(QUEUE_CAPACITY);
+            positionQueue = new LinkedBlockingQueue<>(queueCapacity);
         }
 
         positionQueue.offer(Coordinates.builder()
@@ -73,7 +74,7 @@ public class MockedTruckService implements TruckService {
         if (noQueuedProcessing) {
             updateTruckCurrentPosition(truckId, positionQueue.poll());
         } else {
-            if (positionQueue.size() == QUEUE_CAPACITY) {
+            if (positionQueue.size() == queueCapacity) {
                 new PositionConsumer(truckId, positionQueue).run();
             }
         }
@@ -95,8 +96,8 @@ public class MockedTruckService implements TruckService {
 
     class PositionConsumer implements Runnable {
 
-        private String truckId;
-        private Queue<Coordinates> positionQueue;
+        private final String truckId;
+        private final Queue<Coordinates> positionQueue;
 
         PositionConsumer(String truckId, Queue<Coordinates> positionQueue) {
             this.truckId = truckId;
