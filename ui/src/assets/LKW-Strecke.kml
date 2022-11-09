@@ -496,23 +496,5 @@
         </coordinates>
       </LineString>
     </Placemark>
-    <Placemark>
-      <name>A10, 14621 Schönwalde-Glien, Deutschland</name>
-      <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
-      <Point>
-        <coordinates>
-          13.0013068,52.6526876,0
-        </coordinates>
-      </Point>
-    </Placemark>
-    <Placemark>
-      <name>E26, 16727 Oberkrämer, Deutschland</name>
-      <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
-      <Point>
-        <coordinates>
-          13.0956854,52.7062436,0
-        </coordinates>
-      </Point>
-    </Placemark>
   </Document>
 </kml>
