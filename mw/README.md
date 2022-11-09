@@ -30,6 +30,15 @@ curl localhost:8080/station
 
 ## REST API
 
+* set MQTT configuration
+  ```
+  export MP_MESSAGING_INCOMING_ECAL_TOPIC=ecal/mqtt
+  export MP_MESSAGING_INCOMING_ECAL_HOST=<host-from-slack>
+  export MP_MESSAGING_INCOMING_ECAL_PORT=1883
+  export MP_MESSAGING_INCOMING_ECAL_USERNAME=<username-from-slack>
+  export MP_MESSAGING_INCOMING_ECAL_PASSWORD=<password-from-slack>
+  ```
+
 * startup service
   ```shell
   ./gradlew quarkusDev
