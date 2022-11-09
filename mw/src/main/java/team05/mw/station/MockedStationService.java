@@ -18,7 +18,7 @@ public class MockedStationService implements StationService {
     public void setup() {
         createAndStoreMockedRp("RP-1", "Wolfslake-Ost", 13.008814, 52.686675, 4, 2);
         createAndStoreMockedRp("RP-2", "Wolfslake-West", 13.004903, 52.667512, 5, 4);
-        createAndStoreMockedRp("RP-3", "Autohof Oberkrämer", 13.108898, 52.70811, 5, 0);
+        createAndStoreMockedRp("RP-3", "Autohof Oberkrämer", 13.108898, 52.70811, 5, 5);
     }
 
     private void createAndStoreMockedRp(String id, String name, double lat, double lng, int capacity, int occupancy) {
