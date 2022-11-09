@@ -10,6 +10,12 @@ export class RecommendationComponent implements OnInit {
 
   recommendedStation?: Backend_Service_model;
 
+  stationData = [
+    '11km | 00:05',
+    '23km | 00:12',
+    '49km | 00:30'
+  ];
+
   constructor(private stationService: ServiceStationService) {
   }
 
@@ -20,11 +26,25 @@ export class RecommendationComponent implements OnInit {
   updateStation() {
     this.stationService.getStations().subscribe(
       stations => {
-        this.recommendedStation = stations.filter(station => {
+        let newStation = stations.filter(station => {
           return station.capacity >= station.occupancy;
-        }).pop()
+        }).pop();
+        if (this.recommendedStation?.id != newStation?.id) {
+
+        }
+        this.recommendedStation = newStation;
       }
-    )
+    );
+  }
+
+  getParkingText(): string {
+    let currStationId: number = parseInt((this.recommendedStation?.id.substr(3, 1) || '4'));
+
+    return this.stationData[currStationId];
+  }
+
+  getParkingStyle() {
+
   }
 
 }
