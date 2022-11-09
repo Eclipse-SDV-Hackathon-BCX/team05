@@ -33,12 +33,12 @@ export class MapComponent implements AfterViewInit {
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
   })
 
-  constructor(private stationService: ServiceStationService) { 
+  constructor(private stationService: ServiceStationService) {
   }
 
   private initMap(): void {
     this.map = L.map('map', {
-      center: [ 52.68, 13.05 ],
+      center: [ 52.693, 13.05 ],
       zoom: 10,
       zoomControl: true,
       attributionControl: false,
@@ -47,7 +47,7 @@ export class MapComponent implements AfterViewInit {
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 10,
-      minZoom: 13,
+      minZoom: 12.2,
 
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
@@ -63,7 +63,7 @@ export class MapComponent implements AfterViewInit {
         .addTo(this.map)
         .bindPopup(station.name)
         this.stations.push({station, marker});
-        
+
     })
   }
 

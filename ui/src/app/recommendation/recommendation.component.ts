@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceStationService } from '../service-station.service';
 
 @Component({
   selector: 'app-recommendation',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecommendationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private stationService: ServiceStationService) {
+  }
 
   ngOnInit(): void {
+
   }
 
 }
