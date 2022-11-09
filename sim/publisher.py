@@ -3,17 +3,17 @@ import sys
 import time
 
 import ecal.core.core as ecal_core
+import geopy.distance
 from ecal.core.publisher import ProtoPublisher
 from pykml import parser
-import geopy.distance
 
 import telemetrie_pb2
 
 coordinates = []
 coordinates_size = 0
 
-STOP_longitude = 13.009171
-STOP_latitude = 52.685639
+STOP_longitude = 13.004903
+STOP_latitude = 52.667512
 STOP = (STOP_latitude, STOP_longitude)
 
 #[[lat,long,0] for i in range(50)]
