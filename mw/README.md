@@ -28,6 +28,19 @@ build/mw-1.0-SNAPSHOT-runner
 curl localhost:8080/station
 ```
 
+## Truck position websocket
+
+```shell
+curl --include \
+     --no-buffer \
+     --header "Connection: Upgrade" \
+     --header "Upgrade: websocket" \
+     --header "Host: localhost:8080" \
+     --header "Origin: http://localhost:8080" \
+     --header "Sec-WebSocket-Key: SGVsbG8sIHdvcmxkIQ==" \
+     --header "Sec-WebSocket-Version: 13" \
+     http://localhost:8080/truck/a593ff4c-562c-4f95-a5be-a6de91e13776/position
+```
 ## REST API
 
 * set MQTT configuration
