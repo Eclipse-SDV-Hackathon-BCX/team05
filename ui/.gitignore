@@ -20,6 +20,13 @@ yarn-error.log
 .settings/
 *.sublime-workspace
 
+# IntelliJ
+.idea
+*.ipr
+*.iml
+*.iws
+
+
 # Visual Studio Code
 ../.vscode/*
 !../.vscode/settings.json
