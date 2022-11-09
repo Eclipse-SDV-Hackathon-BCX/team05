@@ -2,12 +2,14 @@ package team05.mw.truck;
 
 import io.vertx.mutiny.core.eventbus.EventBus;
 import lombok.extern.slf4j.Slf4j;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import team05.mw.common.Coordinates;
 import team05.mw.ecal.EcalMessage;
 import team05.mw.geo.GeoService;
 import team05.mw.station.Station;
 import team05.mw.station.StationService;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Singleton;
 import java.util.*;
 import java.util.concurrent.ConcurrentSkipListMap;
@@ -20,7 +22,8 @@ public class MockedTruckService implements TruckService {
     private final int QUEUE_CAPACITY = 60 / 3;
     private final Map<String, Truck> internalStore = Collections.synchronizedMap(new HashMap<>());
     private final Map<String, Queue<Coordinates>> postitionQueues = new ConcurrentSkipListMap<>();
-
+    @ConfigProperty(name = "team05.mw.no-queued-processing", defaultValue = "true")
+    private boolean noQueuedProcessing;
     private final GeoService geoService;
     private final StationService stationService;
     private final EventBus eventBus;
@@ -29,6 +32,11 @@ public class MockedTruckService implements TruckService {
         this.geoService = geoService;
         this.stationService = stationService;
         this.eventBus = eventBus;
+    }
+
+    @PostConstruct
+    public void setup() {
+        log.info("noQueuedProcessing == {}", noQueuedProcessing);
     }
 
     @Override
@@ -62,11 +70,13 @@ public class MockedTruckService implements TruckService {
         internalStore.put(truckId, truck);
         postitionQueues.put(truckId, positionQueue);
 
-        updateTruckCurrentPosition(truckId, positionQueue.poll());
-//        if (positionQueue.size() == QUEUE_CAPACITY) {
-//            new PositionConsumer(truckId, positionQueue)
-//                    .run();
-//        }
+        if (noQueuedProcessing) {
+            updateTruckCurrentPosition(truckId, positionQueue.poll());
+        } else {
+            if (positionQueue.size() == QUEUE_CAPACITY) {
+                new PositionConsumer(truckId, positionQueue).run();
+            }
+        }
     }
 
     void updateTruckCurrentPosition(String truckId, Coordinates position) {
